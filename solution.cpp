@@ -60,14 +60,23 @@ void Solution::getDistance(vector<vector<int>>& points, vector<int> keypoint, ve
  }
 
  int Solution::partition(vector<int>& distance, int l, int r, int key) {
-	 int i = 0;
+	 int i = l;
+	 int j = l;
 	 while (distance[i] != key) {
 		 i++;
 	 }
-	 i--;
+	 swap(distance[i], distance[r]);
+	 
+	 i = l;
+	 for (j;j < r;j++) {
+		 if (distance[j] < key) {
+			 this->swap(distance[i], distance[j]);
+			 i++;
+		 }
+	 }
 	 swap(distance[i], distance[r]);
 
-	 return 1;
+	 return i;
  }
  void Solution::swap(int& a, int& b) {
 	 int temp;
