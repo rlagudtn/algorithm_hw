@@ -14,7 +14,7 @@ public:
 /* Put your codes */
     void getDistance(vector<vector<int>>& points, vector<int> keypoint, vector<int>& distance);
 
-    int getSubMedian(vector<int>& distance);
+    int getSubMedian(vector<int>& distance, int l, int r);
 
     int getMedian(vector<int>& distance, int l, int r);
 
@@ -22,6 +22,7 @@ public:
 
     void swap(int& a, int& b);
 
+    int select(vector<int>& distance, int l, int r, int key);
 };
 
 

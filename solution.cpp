@@ -24,17 +24,17 @@ void Solution::getDistance(vector<vector<int>>& points, vector<int> keypoint, ve
 
 	
 }
- int Solution::getSubMedian(vector<int>& distance){
-	 int l = 0;
-	 int r = 4;
-	 int j;
-	 int count,n,subMedian;
+ int Solution::getSubMedian(vector<int>& distance,int l,int r){
+	 int i = l;
+	 int j = l+4;
+	 int k;
+	 int subMedian;
 	 vector<int> median;
-	 while (l < distance.size()) {
-		 subMedian = this->getMedian(distance, l, r);
+	 while (i <= r) {
+		 subMedian = this->getMedian(distance, i, j);
 		 median.push_back(subMedian);
-		 l = r+1;
-		 if (r + 5 >= distance.size()) r = distance.size() - 1;
+		 i = j+1;
+		 if (j + 5 > r ) j = r;
 	 }
 
 	 return this->getMedian(distance, 0, distance.size() - 1);
@@ -59,17 +59,17 @@ void Solution::getDistance(vector<vector<int>>& points, vector<int> keypoint, ve
 	 return distance[l - 1];
  }
 
- int Solution::partition(vector<int>& distance, int l, int r, int key) {
+ int Solution::partition(vector<int>& distance, int l, int r, int x) {
 	 int i = l;
 	 int j = l;
-	 while (distance[i] != key) {
+	 while (distance[i] != x) {
 		 i++;
 	 }
 	 swap(distance[i], distance[r]);
 	 
 	 i = l;
 	 for (j;j < r;j++) {
-		 if (distance[j] < key) {
+		 if (distance[j] < x) {
 			 this->swap(distance[i], distance[j]);
 			 i++;
 		 }
@@ -83,4 +83,13 @@ void Solution::getDistance(vector<vector<int>>& points, vector<int> keypoint, ve
 	 temp = a;
 	 a = b;
 	 b = temp;
+ }
+ int Solution::select(vector<int>& distance, int l, int r, int key) {
+	 
+	 //pivot을 구한다.
+	 int pivot = this->getSubMedian(distance, l, r);
+
+	 //partition 을 한다.
+	 // key 와 비교한다.
+	 return 0;
  }
